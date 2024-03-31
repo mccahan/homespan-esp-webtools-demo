@@ -25,4 +25,3 @@ jobs:
           libraries: |
             - source-url: https://github.com/mccahan/HomeSpan.git
               source-path: src
-          sketch-paths: demo.ino
