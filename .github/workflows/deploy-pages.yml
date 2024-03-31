@@ -24,7 +24,6 @@ jobs:
           fqbn: "esp32:esp32:esp32"
           libraries: |
             - source-url: https://github.com/mccahan/HomeSpan.git
-              source-path: src
-            - name: Blinker
+              name: HomeSpan
           sketch-paths: |
             - ./01-Sample-LightBulb/
