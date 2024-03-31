@@ -25,5 +25,6 @@ jobs:
           libraries: |
             - source-url: https://github.com/mccahan/HomeSpan.git
               source-path: src
+            - name: Blinker
           sketch-paths: |
             - ./01-Sample-LightBulb/
