@@ -22,6 +22,7 @@ jobs:
       - uses: arduino/compile-sketches@v1
         with:
           fqbn: "esp32:esp32:esp32"
+          verbose: true
           libraries: |
             - source-url: https://github.com/mccahan/HomeSpan.git
               name: HomeSpan
@@ -29,3 +30,4 @@ jobs:
             - ./01-Sample-LightBulb/
       - run: find . -type f
       - run: ls -l /tmp
+      - run: pip install esptool
