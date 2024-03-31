@@ -28,6 +28,6 @@ jobs:
               name: HomeSpan
           sketch-paths: |
             - ./01-Sample-LightBulb/
-      - run: find . -type f
-      - run: find /tmp -type f
+
       - run: pip install esptool
+      - run: arduino-cli compile --fqbn esp32:esp32:esp32 ./01-Sample-LightBulb/
