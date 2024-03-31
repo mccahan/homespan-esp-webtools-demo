@@ -17,17 +17,15 @@ jobs:
           repository: 'mccahan/HomeSpan'
           path: libraries/HomeSpan
 
-      - run: ls -l
-
-      - uses: arduino/compile-sketches@v1
-        with:
-          fqbn: "esp32:esp32:esp32"
-          verbose: true
-          libraries: |
-            - source-url: https://github.com/mccahan/HomeSpan.git
-              name: HomeSpan
-          sketch-paths: |
-            - ./01-Sample-LightBulb/
+      # - uses: arduino/compile-sketches@v1
+      #   with:
+      #     fqbn: "esp32:esp32:esp32"
+      #     verbose: true
+      #     libraries: |
+      #       - source-url: https://github.com/mccahan/HomeSpan.git
+      #         name: HomeSpan
+      #     sketch-paths: |
+      #       - ./01-Sample-LightBulb/
 
       - run: pip install esptool
       - name: Install Arduino CLI
@@ -38,6 +36,7 @@ jobs:
       # dynamically by the build matrix.
       - name: Install platform
         run: |
+          arduino-cli lib install https://github.com/mccahan/HomeSpan.git
           arduino-cli core update-index
           arduino-cli core install esp32:esp32
 
