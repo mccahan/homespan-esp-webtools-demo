@@ -47,6 +47,8 @@ jobs:
           ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL=true arduino-cli lib install --git-url https://github.com/mccahan/HomeSpan.git
           arduino-cli core update-index
           arduino-cli core install esp32:esp32
+      
+      - run: arduino-cli lib list
 
       # Finally, we compile the sketch, using the FQBN that was set
       # in the build matrix.
