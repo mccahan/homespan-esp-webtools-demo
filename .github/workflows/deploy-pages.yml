@@ -43,3 +43,5 @@ jobs:
       # in the build matrix.
       - name: Compile Sketch
         run: arduino-cli compile --fqbn esp32:esp32:esp32 ./01-Sample-LightBulb
+
+      run: find . -type f | grep bin
