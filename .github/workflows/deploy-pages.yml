@@ -30,7 +30,6 @@ jobs:
       - run: pip install esptool
       - name: Install Arduino CLI
         uses: arduino/setup-arduino-cli@v1
-      - run: arduino-cli compile --fqbn esp32:esp32:esp32 ./01-Sample-LightBulb/
 
       # We then install the platform, which one will be determined
       # dynamically by the build matrix.
