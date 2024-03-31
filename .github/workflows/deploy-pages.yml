@@ -26,22 +26,10 @@ jobs:
           repository: 'mccahan/HomeSpan'
           path: libraries/HomeSpan
 
-      # - uses: arduino/compile-sketches@v1
-      #   with:
-      #     fqbn: "esp32:esp32:esp32"
-      #     verbose: true
-      #     libraries: |
-      #       - source-url: https://github.com/mccahan/HomeSpan.git
-      #         name: HomeSpan
-      #     sketch-paths: |
-      #       - ./01-Sample-LightBulb/
-
       - run: pip install esptool
       - name: Install Arduino CLI
         uses: arduino/setup-arduino-cli@v1
 
-      # We then install the platform, which one will be determined
-      # dynamically by the build matrix.
       - name: Install platform
         run: |
           ARDUINO_LIBRARY_ENABLE_UNSAFE_INSTALL=true arduino-cli lib install --git-url https://github.com/mccahan/HomeSpan.git
@@ -53,7 +41,7 @@ jobs:
       # Finally, we compile the sketch, using the FQBN that was set
       # in the build matrix.
       - name: Compile Sketch
-        run: arduino-cli compile -e --fqbn esp32:esp32:esp32 --build-path build/ ./01-Sample-LightBulb
+        run: arduino-cli compile -e --fqbn esp32:esp32:esp32 --build-path build/ ./05-WorkingLED
 
       - run: find . -name '*.bin'
       - name: Set Boot App0 Path
@@ -68,10 +56,10 @@ jobs:
             --flash_mode dio \
             --flash_freq 40m \
             --flash_size 4MB \
-            0x1000 ./build/01-Sample-LightBulb.ino.bootloader.bin \
-            0x8000 ./build/01-Sample-LightBulb.ino.partitions.bin \
+            0x1000 ./build/05-WorkingLED.ino.bootloader.bin \
+            0x8000 ./build/05-WorkingLED.ino.partitions.bin \
             0xe000 "${{ env.BOOT_APP0_PATH }}" \
-            0x10000 ./build/01-Sample-LightBulb.ino.bin
+            0x10000 ./build/05-WorkingLED.ino.bin
       
       - name: Save Artifact
         uses: actions/upload-artifact@v2
