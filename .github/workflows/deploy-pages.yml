@@ -18,3 +18,10 @@ jobs:
           path: libraries/HomeSpan
 
       - run: ls -l
+
+      - uses: arduino/compile-sketches@v1
+        with:
+          fqbn: "esp32:esp32:esp32"
+          libraries: |
+            - source-url: https://github.com/mccahan/HomeSpan.git
+              source-path: src
