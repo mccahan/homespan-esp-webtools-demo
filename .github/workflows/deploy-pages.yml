@@ -42,6 +42,6 @@ jobs:
       # Finally, we compile the sketch, using the FQBN that was set
       # in the build matrix.
       - name: Compile Sketch
-        run: arduino-cli compile --fqbn esp32:esp32:esp32 ./01-Sample-LightBulb
+        run: arduino-cli compile -e --fqbn esp32:esp32:esp32 ./01-Sample-LightBulb
 
       - run: find . -type f | grep bin
