@@ -29,5 +29,5 @@ jobs:
           sketch-paths: |
             - ./01-Sample-LightBulb/
       - run: find . -type f
-      - run: ls -l /tmp
+      - run: find /tmp -type f
       - run: pip install esptool
