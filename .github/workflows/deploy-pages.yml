@@ -44,4 +44,5 @@ jobs:
       - name: Compile Sketch
         run: arduino-cli compile -e --fqbn esp32:esp32:esp32 --build-path build/ ./01-Sample-LightBulb
 
-      - run: find /home/runner -type f | grep bin
+      - run: find . -name '*.bin'
+      - run: find /home/runner -type f -name boot_app0.bin
