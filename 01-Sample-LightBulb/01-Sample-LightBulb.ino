@@ -1,4 +1,5 @@
 #include "HomeSpan.h"  // HomeSpan sketches always begin by including the HomeSpan library
+#include "Blinker.h"
 
 void setup() {  // Your HomeSpan code should be placed within the standard Arduino setup() function
 
