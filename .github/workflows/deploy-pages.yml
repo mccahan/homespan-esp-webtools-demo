@@ -45,4 +45,25 @@ jobs:
         run: arduino-cli compile -e --fqbn esp32:esp32:esp32 --build-path build/ ./01-Sample-LightBulb
 
       - run: find . -name '*.bin'
-      - run: find /home/runner -type f -name boot_app0.bin
+      - name: Set Boot App0 Path
+        run: |
+          BOOT_APP0_PATH=$(find /home/runner -type f -name boot_app0.bin)
+          echo "BOOT_APP0_PATH=$BOOT_APP0_PATH" >> $GITHUB_ENV
+
+      - name: Merge Firmware
+        run: |
+          esptool.py --chip esp32 merge_bin \
+            -o merged-firmware.bin \
+            --flash_mode dio \
+            --flash_freq 40m \
+            --flash_size 4MB \
+            0x1000 ./build/01-Sample-LightBulb.ino.bootloader.bin \
+            0x8000 ./build/01-Sample-LightBulb.ino.partitions.bin \
+            0xe000 "${{ env.BOOT_APP0_PATH }}" \
+            0x10000 ./build/01-Sample-LightBulb.ino.bin
+      
+      - name: Save Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: merged-firmware
+          path: merged-firmware.bin
