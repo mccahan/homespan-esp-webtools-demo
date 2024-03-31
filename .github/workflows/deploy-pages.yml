@@ -27,3 +27,5 @@ jobs:
               name: HomeSpan
           sketch-paths: |
             - ./01-Sample-LightBulb/
+      - run: ls -l
+      - run: ls -l /tmp
